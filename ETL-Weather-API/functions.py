@@ -14,21 +14,22 @@ def fetch_current_weather(city):
     data=response.json()
 
     current_weather={
-        'city_id':[data['id']],
-        'city' :[data['name']],
-        'latitude': [data['coord']['lat']],
-        'longitud':[data['coord']['lon']],
-        'weather': [data['weather'][0]['description']],
-        'temperature_celsius': [data['main']['temp'] - 273.15],  # Convert from Kelvin to Celsius
-        'humidity': [data['main']['humidity']],
-        'pressure': [data['main']['pressure']],
-        'datetime': [pd.to_datetime(data['dt'], unit='s')],
-        'visibility':[data['visibility']],
-        'sunrise':[pd.to_datetime(data['sys']['sunrise'], unit='s')],
-        'sunset':[pd.to_datetime(data['sys']['sunset'], unit='s')]
+        'CityID':[data['id']],
+        'CityName' :[data['name']],
+        'Latitude': [data['coord']['lat']],
+        'Longitude':[data['coord']['lon']],
+        'Weather': [data['weather'][0]['description']],
+        'Temperature': [data['main']['temp'] - 273.15],  # Convert from Kelvin to Celsius
+        'Humidity': [data['main']['humidity']],
+        'Pressure': [data['main']['pressure']],
+        'DateTime': [pd.to_datetime(data['dt'], unit='s')],
+        'Visibility':[data['visibility']],
+        'Sunrise':[pd.to_datetime(data['sys']['sunrise'], unit='s')],
+        'Sunset':[pd.to_datetime(data['sys']['sunset'], unit='s')]
     }
 
     current_df= pd.DataFrame(current_weather)
+
     return current_df
     
 #function to fetch 5-days forecase data
@@ -40,12 +41,12 @@ def fetch_forecast_weather(city):
     forecast_data=[]
     for entry in data['list']:
         forecast_data.append({
-            'city_id': data['city']['id'],
-            'datetime': pd.to_datetime(entry['dt'], unit='s'),
-            'weather': entry['weather'][0]['description'],
-            'temperature_celsius': entry['main']['temp'] - 273.15,  # Convert from Kelvin to Celsius
-            'humidity': entry['main']['humidity'],
-            'pressure': entry['main']['pressure']
+            'CityID': data['city']['id'],
+            'DateTime': pd.to_datetime(entry['dt'], unit='s'),
+            'Weather': entry['weather'][0]['description'],
+            'Temperature': entry['main']['temp'] - 273.15,  # Convert from Kelvin to Celsius
+            'Humidity': entry['main']['humidity'],
+            'Pressure': entry['main']['pressure']
 
         })
     forecast_df = pd.DataFrame(forecast_data)
