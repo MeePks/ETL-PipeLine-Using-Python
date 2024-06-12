@@ -1,10 +1,15 @@
 #importing necessary Libraies
 import requests
 import pandas as pd
+import configparser as cfp
+
+#parsing config file
+config=cfp.ConfigParser()
+config.read('ETL-Weather-API\config.ini')
 
 #Necessary Variables
 base_url='http://api.openweathermap.org/data/2.5/'
-api_key='a8b63f4b297154f9f4b13387cacfdb4b'
+api_key=config['main']['api_key']
 
 
 #function to fetch current Weather Data
