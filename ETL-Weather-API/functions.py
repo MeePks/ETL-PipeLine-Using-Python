@@ -16,6 +16,9 @@ api_key=config['main']['api_key']
 def fetch_current_weather(city):
     url=base_url+f'weather?q={city}&appid={api_key}'
     response=requests.get(url)
+    if response.status_code == 404:
+        print(f'City({city}) not found')
+        return
     data=response.json()
 
     current_weather={
@@ -41,6 +44,9 @@ def fetch_current_weather(city):
 def fetch_forecast_weather(city):
     url=base_url+f'forecast?q={city}&appid={api_key}'
     response=requests.get(url)
+    if response.status_code == 404:
+        print(f'City({city}) not found')
+        return
     data=response.json()
 
     forecast_data=[]
