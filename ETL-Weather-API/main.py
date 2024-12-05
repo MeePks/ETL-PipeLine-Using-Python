@@ -21,7 +21,7 @@ current_weather=config['Sql Information']['current_weather']
 forecase_weather=config['Sql Information']['forecase_weather']
 cities = config['main']['cities'].split(',')
 
-
+#getting multiple cites using loop
 for city in cities:
     current_df=fn.fetch_current_weather(city)
     all_current_weather_df=pd.concat([all_current_weather_df,current_df])
