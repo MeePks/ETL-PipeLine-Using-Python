@@ -6,6 +6,7 @@ def sqlalchemy_connnection(server,database):
     try:
         connection_string = f'mssql+pyodbc://@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server&Trusted_Connection=yes'
         engine=create_engine(connection_string)
+        print('Connected')
         return engine
     except:
         print(f'Error Connecting to the Server:{server} database : {database}')
